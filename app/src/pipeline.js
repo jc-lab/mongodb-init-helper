@@ -18,7 +18,7 @@ function createUser(client, item) {
     const admin = db.admin();
     admin.addUser(item.user, item.pwd, item, (err) => {
       if (err) {
-        if (err.code === 11000) {
+        if (err.code === 11000 || err.code=== 51003) {
           console.error(err.message);
           resolve();
           return ;
@@ -49,12 +49,6 @@ function grantRolesToUser(client, item) {
     const admin = db.admin();
     admin.command(command, (err) => {
       if (err) {
-        console.log(err);
-        if (err.code === 11000) {
-          console.error(err.message);
-          resolve();
-          return ;
-        }
         reject(err);
         return ;
       }
