@@ -30,6 +30,7 @@ function readStdin() {
 function openPool() {
   return mongodb.MongoClient.connect(
     appEnv.MONGODB_URL, {
+      readPreference: 'primary',
       useNewUrlParser: true,
       useUnifiedTopology: true,
       poolSize: 2,

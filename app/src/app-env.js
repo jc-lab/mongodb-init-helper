@@ -15,7 +15,7 @@ const MONGODB_URL = (() => {
   if (process.env.MONGODB_URL) {
     return process.env.MONGODB_URL;
   }
-  return `mongodb://${MONGODB_HOST}${MONGODB_PORT ? (MONGODB_PORT + ':') : ''}`;
+  return `mongodb://${MONGODB_HOST}${MONGODB_PORT ? (':' + MONGODB_PORT) : ''}`;
 })();
 
 module.exports = {
