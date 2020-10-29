@@ -1,6 +1,6 @@
 {
   "name": "mongodb-init-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "test:lint": "eslint --ext \".js,.ts\" ./",
     "lint:fix": "eslint --ext \".js,.ts\" --fix ./src",
     "prepack": "npm run test && npm run build",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "node src/entry.js --pipeline-file=sample.json"
   },
   "keywords": [
     "docker",
