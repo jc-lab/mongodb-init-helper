@@ -31,9 +31,6 @@ function openPool() {
   return mongodb.MongoClient.connect(
     appEnv.MONGODB_URL, {
       readPreference: 'primary',
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      poolSize: 2,
       authMechanism: appEnv.MONGODB_ADMIN_AUTH_MECHANISM,
       auth: (appEnv.MONGODB_ADMIN_USER || appEnv.MONGODB_ADMIN_PASS) ? {
         user: appEnv.MONGODB_ADMIN_USER,
