@@ -33,7 +33,7 @@ function openPool() {
       readPreference: 'primary',
       authMechanism: appEnv.MONGODB_ADMIN_AUTH_MECHANISM,
       auth: (appEnv.MONGODB_ADMIN_USER || appEnv.MONGODB_ADMIN_PASS) ? {
-        user: appEnv.MONGODB_ADMIN_USER,
+        username: appEnv.MONGODB_ADMIN_USER,
         password: appEnv.MONGODB_ADMIN_PASS
       } : undefined
     }
