@@ -1,14 +1,22 @@
-FROM node:lts
+FROM node:16-alpine as builder
 
-COPY [ "app", "/app" ]
-COPY [ "start.sh", "/start.sh" ]
+RUN mkdir -p /work
+WORKDIR "/work"
+ADD ["app", "/work/"]
 
-RUN cd /app && \
-    npm install && \
-    npm run build && \
-    cp dist/bundle.js /bundle.js && \
-    cd / && \
-    rm -rf /app && \
-    chmod +x /start.sh
+RUN yarn install
 
-CMD "/start.sh"
+RUN yarn build
+
+FROM node:16-alpine
+
+COPY --from=builder ["/work/dist", "/app/"]
+COPY --from=builder ["/work/package.json", "/work/yarn.lock", "/work/.yarnrc.yml", "/app/"]
+COPY --from=builder ["/work/.yarn", "/app/.yarn"]
+
+WORKDIR /app
+
+RUN yarn workspaces focus --production && \
+    rm -rf .yarn && \
+    touch config.yaml
+CMD ["node", "app.js"]

@@ -7,7 +7,7 @@ module.exports = {
     main: './src/entry.js'
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'app.js',
     path: process.env.BUNDLE_JS_DIR ? path.resolve(process.env.BUNDLE_JS_DIR) : path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2'
   },
