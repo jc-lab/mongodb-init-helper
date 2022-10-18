@@ -19,4 +19,8 @@ WORKDIR /app
 RUN yarn workspaces focus --production && \
     rm -rf .yarn && \
     touch config.yaml
-CMD ["node", "app.js"]
+
+COPY ["start.sh", "/start.sh"]
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
